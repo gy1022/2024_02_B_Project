@@ -6,7 +6,6 @@ public class MoveTest : MonoBehaviour
 {
     public Transform Player;
     // Start is called before the first frame update
-    public Vector3 Player;
     void Start()
     {
         

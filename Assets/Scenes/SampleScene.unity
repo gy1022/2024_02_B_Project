@@ -533,7 +533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &717224024
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -670,6 +670,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1262665264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262665267}
+  - component: {fileID: 1262665266}
+  - component: {fileID: 1262665265}
+  m_Layer: 0
+  m_Name: Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1262665265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262665264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc8c19366702864a94c7b938c9c30f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 10
+  height: 10
+  cellSize: 1
+  cellPrefab: {fileID: 1201292548257681775, guid: 9fcb2b2d9f22557478b91fdc7365d3f6,
+    type: 3}
+  buildingPrefabs: {fileID: 5016544806639805182, guid: 7eae45c29865ff24586504bb027282d3,
+    type: 3}
+  PlayerController: {fileID: 1313126435}
+  maxBuildDistance: 5
+  grid: {fileID: 1262665266}
+--- !u!156049354 &1262665266
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262665264}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0
+--- !u!4 &1262665267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262665264}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1313126434
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 5
+  rotationDpeed: 10
   firstPersonCamera: {fileID: 330585545}
   thirdPersonCamera: {fileID: 528758090}
   radius: 5
@@ -713,6 +781,7 @@ MonoBehaviour:
   yMinLimit: -90
   yMaxLimit: 90
   mouseSenesitivity: 2
+  isFirstPerson: 1
 --- !u!54 &1313126436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -838,3 +907,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 717224027}
   - {fileID: 1313126440}
+  - {fileID: 1262665267}

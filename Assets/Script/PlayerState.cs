@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerState : MonoBehaviour
+public abstract class PlayerState 
 {
     protected PlayerStateMachine stateMachine;
     protected PlayerController playerController;
+    protected PlayerAnimationManager animationManager;
 
     public PlayerState(PlayerStateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
         this.playerController = stateMachine.PlayerController;
+        this.animationManager = stateMachine.GetComponent<PlayerAnimationManager>();
     }
 
     public virtual void Enter() { }
@@ -64,10 +66,13 @@ public class IdleState : PlayerState
 
 public class MovingState : PlayerState
 {
+    private bool isRunning;
     public MovingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Update()
     {
+        isRunning = Input.GetKey(KeyCode.LeftShift);
+
         ChekTransitions();
     }
     public override void FixedUpdate()

@@ -152,5 +152,5 @@ public class PlayerInventory : MonoBehaviour
         Debug.Log($"³ª¹«:{treeCount}°³");
         Debug.Log("================");
     }
-}
+
 }

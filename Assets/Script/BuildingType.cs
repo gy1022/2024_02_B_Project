@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum BuildingType
 {
-    CraftingTalbe,
+    CraftingTable,
     Furnace,
     Kitchen,
     Storage

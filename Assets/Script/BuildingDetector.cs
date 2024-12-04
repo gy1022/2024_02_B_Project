@@ -8,6 +8,7 @@ public class BuildingDetector : MonoBehaviour
     private Vector3 lastPosition;
     private float moveThreshold = 0.1f;
     private ConstructibleBuilding currentNearbyBuilding;
+    private BuildingCrafter currentBuildingCrafter;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,15 @@ public class BuildingDetector : MonoBehaviour
 
         if (currentNearbyBuilding != null && Input.GetKeyDown(KeyCode.F))
         {
-            currentNearbyBuilding.StartConstruction(GetComponent<PlayerInventory>());
+            if(currentNearbyBuilding.isConstructed)
+            {
+                currentNearbyBuilding.StartConstruction(GetComponent<PlayerInventory>());
+            }
+            else if(currentBuildingCrafter !=null)
+            {
+                Debug.Log($"{currentNearbyBuilding.buildingName}의 제작 메뉴 열기");
+                CraftingUIManager.Instance?.ShowUI(currentBuildingCrafter);
+            }
         }
     }
 
@@ -37,24 +46,28 @@ public class BuildingDetector : MonoBehaviour
 
         float closestDistance = float.MaxValue;
         ConstructibleBuilding closestBuilding = null;
+        BuildingCrafter closestCrafter = null;
 
         foreach (Collider collider in hitColliders)
         {
             ConstructibleBuilding building = collider.GetComponent<ConstructibleBuilding>();
-            if (building != null && building.canBuild && !building.isConstructed)
+            if (building != null)
             {
                 float distance = Vector3.Distance(transform.position, building.transform.position);
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
                     closestBuilding = building;
+                    closestCrafter = building.GetComponent<BuildingCrafter>();
                 }
             }
         }
         if (closestBuilding != currentNearbyBuilding)
         {
             currentNearbyBuilding = closestBuilding;
-            if (currentNearbyBuilding != null)
+            currentBuildingCrafter = closestCrafter;
+
+            if (currentNearbyBuilding != null && !currentNearbyBuilding.isConstructed)
             {
                 if (FloatingTextManager.Instance != null)
                 {
